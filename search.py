@@ -16,6 +16,14 @@ db = firestore.client()
 # Initialize YouTube Music
 ytmusic = YTMusic()
 
+# --- THE WAKE-UP ALARM (This was missing!) ---
+@app.route('/ping', methods=['GET'])
+def keep_awake():
+    # This just replies to UptimeRobot so the server stays awake.
+    # It does NOT search YouTube or touch your database!
+    return jsonify({"status": "I am awake and ready!"}), 200
+
+# --- YOUR EXISTING SEARCH ENGINE ---
 @app.route('/search', methods=['GET'])
 def search_and_add():
     # Grab the song name your React app sent
